@@ -1,0 +1,31 @@
+# Only for a very quick local dev setup
+# docker-engine 19.03.0+
+# docker-compose 1.29.2+
+
+# just run docker-compose up in terminal
+
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:5.0.6
+    command: --replSet rs0
+    logging:
+      driver: none # comment out to see mongod logs
+    ports:
+      - '27030:27017'
+      # your_port:container_port
+    volumes:
+      - mongo:/data/db
+      - ./config/init.js:/docker-entrypoint-initdb.d/init.js
+  redis:
+    image: redis:7.0-rc-alpine3.15
+    ports:
+      - '6378:6379'
+    volumes:
+      - redis:/data
+      - ./config/redis.conf:/usr/local/etc/redis
+
+volumes:
+  mongo:
+  redis:

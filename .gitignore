@@ -33,3 +33,7 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# your personal things to ease your local dev flow only
+**/*.mongodb
+arch.drawio
